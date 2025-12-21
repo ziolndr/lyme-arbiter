@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARBITER • Lyme Disease Therapeutic Discovery</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --black: #0a0a0a;
+      --white: #fafafa;
+      --gray: #737373;
+      --light: #a3a3a3;
+      --border: #262626;
+      --surface: #141414;
+      --green: #22c55e;
+      --red: #ef4444;
+      --amber: #f59e0b;
+      --purple: #a855f7;
+      --blue: #3b82f6;
+    }
+    
+    body { 
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      padding: 40px;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    header {
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    
+    h1 {
+      font-size: 32px;
+      font-weight: 400;
+      margin: 16px 0 8px;
+    }
+    
+    .subtitle {
+      color: var(--gray);
+      font-style: italic;
+    }
+    
+    .mono {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+    }
+    
+    section {
+      margin-bottom: 48px;
+    }
+    
+    h2 {
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    h3 {
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: var(--light);
+    }
+    
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    
+    .panel-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+    
+    .constraint-field {
+      font-size: 14px;
+      color: var(--light);
+      white-space: pre-wrap;
+      line-height: 1.7;
+    }
+    
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    
+    .tab {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      padding: 10px 20px;
+      background: var(--surface);
+      color: var(--gray);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .tab:hover { border-color: var(--light); }
+    .tab.active { background: var(--white); color: var(--black); }
+    
+    .drug-grid {
+      display: grid;
+      gap: 12px;
+    }
+    
+    .drug-card {
+      background: var(--black);
+      border: 1px solid var(--border);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 16px;
+      align-items: center;
+    }
+    
+    .drug-name {
+      font-weight: 500;
+      font-size: 15px;
+    }
+    
+    .drug-mechanism {
+      font-size: 13px;
+      color: var(--gray);
+      font-style: italic;
+      margin-top: 4px;
+    }
+    
+    .score {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      min-width: 60px;
+      text-align: right;
+    }
+    
+    .score.high { color: var(--green); }
+    .score.medium { color: var(--amber); }
+    .score.low { color: var(--gray); }
+    
+    .rank {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--gray);
+      min-width: 40px;
+      text-align: center;
+    }
+    
+    button {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      padding: 12px 24px;
+      background: var(--white);
+      color: var(--black);
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    button:hover { opacity: 0.9; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    .button-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    
+    button.secondary {
+      background: var(--surface);
+      color: var(--white);
+      border: 1px solid var(--border);
+    }
+    
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+    }
+    
+    .category-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      background: var(--border);
+      color: var(--light);
+      margin-left: 8px;
+    }
+    
+    .category-tag.standard { background: rgba(59, 130, 246, 0.2); color: var(--blue); }
+    .category-tag.experimental { background: rgba(168, 85, 247, 0.2); color: var(--purple); }
+    .category-tag.natural { background: rgba(34, 197, 94, 0.2); color: var(--green); }
+    .category-tag.mechanism { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+    
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--gray);
+      font-style: italic;
+    }
+    
+    .insight-box {
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      padding: 20px;
+      margin-top: 24px;
+    }
+    
+    .insight-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 8px;
+    }
+    
+    .insight-text {
+      font-size: 14px;
+      color: var(--light);
+    }
+    
+    .query-selector {
+      margin-bottom: 32px;
+    }
+    
+    .highlight {
+      background: rgba(34, 197, 94, 0.2);
+      padding: 2px 4px;
+    }
+    
+    @media (max-width: 768px) {
+      body { padding: 20px; }
+      .results-grid { grid-template-columns: 1fr; }
+      .drug-card { grid-template-columns: 1fr; gap: 8px; }
+      .score, .rank { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="label">ARBITER THERAPEUTIC DISCOVERY</div>
+      <h1>Lyme Disease Research</h1>
+      <p class="subtitle">Semantic coherence analysis for Borrelia burgdorferi treatment pathways</p>
+    </header>
+
+    <!-- QUERY SELECTION -->
+    <section class="query-selector">
+      <h2>Select Analysis</h2>
+      <div class="tabs">
+        <button class="tab active" data-query="treatments">Treatment Comparison</button>
+        <button class="tab" data-query="experimental">Experimental Therapies</button>
+        <button class="tab" data-query="natural">Natural Compounds</button>
+        <button class="tab" data-query="mechanism">Mechanism Discovery</button>
+      </div>
+    </section>
+
+    <!-- CONSTRAINT FIELDS -->
+    <section id="constraintSection">
+      <h2>Constraint Field (Query)</h2>
+      
+      <div class="panel" id="treatmentsConstraint">
+        <div class="panel-title">Chronic Lyme Disease Pathology</div>
+        <div class="constraint-field">CHRONIC LYME DISEASE: Borrelia burgdorferi persistent infection with biofilm formation, neurological involvement (neuroborreliosis), joint inflammation (Lyme arthritis), chronic fatigue, cognitive dysfunction ("brain fog"), post-treatment Lyme disease syndrome (PTLDS), antibiotic resistance mechanisms.
+
+PATHOGEN CHARACTERISTICS: Spirochete morphology with corkscrew motility, ability to form cystic/round body forms under stress, biofilm matrix production for immune evasion, intracellular persistence in fibroblasts and neurons, collagen tissue tropism, blood-brain barrier penetration.
+
+TREATMENT CHALLENGES: Persister cell populations tolerant to antibiotics, biofilm-mediated antibiotic resistance, immune system evasion through antigenic variation, deep tissue reservoirs inaccessible to standard antibiotics, co-infections (Babesia, Bartonella, Ehrlichia).</div>
+      </div>
+      
+      <div class="panel" id="experimentalConstraint" style="display:none;">
+        <div class="panel-title">Borrelia Elimination Targets</div>
+        <div class="constraint-field">BORRELIA BURGDORFERI ELIMINATION: Spirochete membrane disruption, biofilm matrix penetration and degradation, cyst form eradication, intracellular persistence clearance, collagen tissue reservoir elimination, blood-brain barrier penetrating agents, immune system evasion countermeasures.
+
+TARGET MECHANISMS: Bacterial membrane destabilization, extracellular matrix degradation, metabolic pathway disruption in dormant forms, reactive oxygen species generation within biofilm, quorum sensing interference, metal ion chelation disrupting enzyme function.</div>
+      </div>
+      
+      <div class="panel" id="naturalConstraint" style="display:none;">
+        <div class="panel-title">Natural Antimicrobial Targets</div>
+        <div class="constraint-field">BORRELIA BURGDORFERI SPIROCHETE: Cystic forms (round bodies), biofilm matrix, persister cells, immune evasion mechanisms, intracellular survival, blood-brain barrier crossing, collagen tissue affinity, oxidative stress vulnerability.
+
+DESIRED PROPERTIES: Biofilm penetration, membrane disruption, immune modulation, anti-inflammatory activity, neuroprotection, minimal toxicity, oral bioavailability, synergy with conventional antibiotics.</div>
+      </div>
+      
+      <div class="panel" id="mechanismConstraint" style="display:none;">
+        <div class="panel-title">Disulfiram Mechanism Investigation</div>
+        <div class="constraint-field">DISULFIRAM (ANTABUSE): Dithiocarbamate compound, aldehyde dehydrogenase inhibitor, metal ion chelation (copper, zinc), crosses blood-brain barrier, intracellular accumulation, oxidative stress induction, disrupts bacterial biofilm integrity.
+
+KNOWN PROPERTIES: FDA-approved for alcoholism, repurposed antimicrobial activity, demonstrated efficacy against Borrelia in vitro, clinical reports of improvement in chronic Lyme patients, mechanism of anti-Borrelia action unknown.
+
+QUESTION: Which mechanism best explains disulfiram's activity against Borrelia burgdorferi?</div>
+      </div>
+    </section>
+
+    <!-- DRUG CARDS BY CATEGORY -->
+    <section>
+      <h2>Treatment Mechanism Cards</h2>
+      <div id="drugCardsContainer"></div>
+    </section>
+
+    <!-- RUN TEST -->
+    <section>
+      <h2>Run Analysis</h2>
+      <div class="button-row">
+        <button id="runAnalysis">Run Selected Analysis</button>
+        <button id="runAll" class="secondary">Run All Analyses</button>
+      </div>
+      
+      <div id="results"></div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer style="margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--gray); font-size: 14px;">
+      <p>ARBITER • TRAUT • founder@traut.ai</p>
+      <p style="margin-top: 8px; font-size: 12px;">Note: If results return 0.0000, re-run — that's API rate limiting, not an actual score.</p>
+    </footer>
+  </div>
+
+  <script>
+    const ARBITER_API = 'https://api.arbiter.traut.ai/public/compare';
+
+    // TREATMENT CATEGORIES
+    const TREATMENTS = {
+      treatments: [
+        {
+          name: "Doxycycline",
+          category: "standard",
+          mechanism: "Tetracycline antibiotic inhibiting bacterial protein synthesis via 30S ribosomal subunit binding. First-line treatment for early Lyme disease. Oral bioavailable, good tissue penetration. Limited efficacy against persister cells and biofilm-embedded bacteria."
+        },
+        {
+          name: "Ceftriaxone IV",
+          category: "standard",
+          mechanism: "Third-generation cephalosporin disrupting bacterial cell wall synthesis. Intravenous administration for neurological Lyme and late-stage disease. Excellent CNS penetration. Standard 2-4 week course, though persisters may survive treatment."
+        },
+        {
+          name: "Azithromycin",
+          category: "standard",
+          mechanism: "Macrolide antibiotic inhibiting 50S ribosomal subunit. Intracellular accumulation in phagocytes. Alternative for doxycycline-intolerant patients. Some activity against intracellular Borrelia forms."
+        },
+        {
+          name: "Disulfiram",
+          category: "experimental",
+          mechanism: "Dithiocarbamate compound repurposed as antimicrobial. Demonstrated potent activity against Borrelia persisters in vitro. Crosses blood-brain barrier. Metal ion chelation (copper/zinc) may disrupt bacterial enzymes. FDA-approved for alcoholism, off-label for Lyme."
+        },
+        {
+          name: "Dapsone Combination",
+          category: "experimental",
+          mechanism: "Sulfone antibiotic with anti-persister activity. Dr. Horowitz protocol combines with other antibiotics for biofilm penetration. Targets folate synthesis pathway. Requires G6PD testing due to hemolysis risk."
+        },
+        {
+          name: "Low Dose Naltrexone",
+          category: "experimental",
+          mechanism: "Opioid antagonist at low doses (1-4.5mg) paradoxically upregulates endorphin production and modulates immune function. Anti-inflammatory effects. May reduce neuroinflammation in neuroborreliosis. Not directly antimicrobial."
+        },
+        {
+          name: "Methylene Blue",
+          category: "experimental",
+          mechanism: "Phenothiazine dye with antimicrobial and mitochondrial support properties. Crosses blood-brain barrier. May enhance cellular energy production impaired by Borrelia infection. Some direct antimicrobial activity via oxidative stress."
+        },
+        {
+          name: "Hyperbaric Oxygen",
+          category: "experimental",
+          mechanism: "High-pressure oxygen therapy increasing tissue oxygenation. Borrelia is microaerophilic - high oxygen may be bacteriostatic. Enhances immune cell function. May improve antibiotic penetration into hypoxic biofilm cores."
+        }
+      ],
+      experimental: [
+        {
+          name: "Photodynamic Therapy",
+          category: "experimental",
+          mechanism: "Light-activated bacterial killing using photosensitizer compounds. IV methylene blue or other photosensitizers followed by light exposure. Generates reactive oxygen species directly within bacteria and biofilms. Clinics in Germany reporting success in treatment-refractory patients. Bypasses antibiotic resistance mechanisms."
+        },
+        {
+          name: "Bacteriophage Therapy",
+          category: "experimental",
+          mechanism: "Spirochete-specific viral lysis using Borrelia-targeting bacteriophages. Phages naturally penetrate biofilms following bacterial hosts. Self-amplifying at infection site. No antibiotic resistance. Limited by strain specificity and immune response to repeat dosing. One research group developing Borrelia-specific phages."
+        },
+        {
+          name: "Nitroxoline",
+          category: "experimental",
+          mechanism: "Vintage antibiotic (1960s) with exceptional biofilm penetration. Originally used for urinary tract infections. Iron and zinc chelation disrupts bacterial metalloenzymes. Recent research shows superior biofilm activity compared to modern antibiotics. Largely forgotten but potentially relevant."
+        },
+        {
+          name: "Ozone Therapy",
+          category: "experimental",
+          mechanism: "Oxidative stress induction via ozone administration (IV, rectal, or blood treatment). Generates reactive oxygen species damaging bacterial membranes. May disrupt biofilm matrix. Enhances oxygen delivery to tissues. Controversial but used in integrative clinics."
+        },
+        {
+          name: "Silver Nanoparticles",
+          category: "experimental",
+          mechanism: "Biofilm-penetrating antimicrobial particles. Silver ions disrupt bacterial membrane integrity and enzyme function. Nanoparticle form enhances biofilm matrix penetration. Broad-spectrum activity. Concerns about tissue accumulation with prolonged use."
+        },
+        {
+          name: "Ivermectin",
+          category: "experimental",
+          mechanism: "Antiparasitic repurposed for potential anti-Borrelia activity. Disrupts neuromuscular function in parasites. Some in vitro activity against spirochetes reported. Excellent safety profile. May have immunomodulatory effects beyond direct antimicrobial action."
+        },
+        {
+          name: "LL-37 Peptide",
+          category: "experimental",
+          mechanism: "Human cathelicidin antimicrobial peptide from innate immune system. Membrane disruption via pore formation. Biofilm dispersal activity. Immunomodulatory effects. Endogenous defense mechanism that may be deficient in chronic infection."
+        },
+        {
+          name: "Lactoferrin",
+          category: "experimental",
+          mechanism: "Iron-sequestering antimicrobial peptide found in milk and mucosal secretions. Deprives bacteria of essential iron. Direct membrane-disrupting activity. Biofilm inhibition. Immune-enhancing properties. Oral supplementation available."
+        }
+      ],
+      natural: [
+        {
+          name: "Cat's Claw (Uncaria tomentosa)",
+          category: "natural",
+          mechanism: "Amazonian vine with pentacyclic oxindole alkaloids. Immune modulation enhancing macrophage and NK cell activity. Anti-inflammatory via NF-κB inhibition. In vitro activity against Borrelia biofilms demonstrated. Core component of Buhner and Cowden protocols. Used by Lyme community for decades."
+        },
+        {
+          name: "Cistus incanus",
+          category: "natural",
+          mechanism: "Mediterranean rockrose with high polyphenol content. Biofilm disruption via matrix degradation. Antiviral and antibacterial properties. Traditional European medicinal plant. Emerging research on anti-Borrelia activity."
+        },
+        {
+          name: "Bee Venom (Melittin)",
+          category: "natural",
+          mechanism: "Membrane-disrupting peptide from honeybee venom. Forms pores in bacterial membranes causing lysis. Activity against spirochetes demonstrated. Apitherapy (bee sting therapy) used by some Lyme patients. Melittin is the primary active component."
+        },
+        {
+          name: "Artemisinin",
+          category: "natural",
+          mechanism: "Wormwood-derived antimalarial compound. Generates free radicals via iron-dependent activation. Activity against various intracellular pathogens. Used in Buhner protocol. May target Babesia co-infection common in Lyme patients."
+        },
+        {
+          name: "Cryptolepis sanguinolenta",
+          category: "natural",
+          mechanism: "West African medicinal plant with cryptolepine alkaloid. Traditional use for malaria and infections. Demonstrated activity against Borrelia in Johns Hopkins study. May target persister cells. Part of herbal antimicrobial protocols."
+        },
+        {
+          name: "Japanese Knotweed (Resveratrol)",
+          category: "natural",
+          mechanism: "Source of trans-resveratrol with anti-inflammatory and antimicrobial properties. Crosses blood-brain barrier. Modulates inflammatory cytokines. Component of Buhner protocol for neurological symptoms. Cardioprotective effects."
+        },
+        {
+          name: "Stevia Extract",
+          category: "natural",
+          mechanism: "Whole-leaf stevia extract (not refined sweetener) with reported anti-biofilm activity. In vitro study showed activity against Borrelia biofilms and persisters. Mechanism unclear. Inexpensive and accessible. Requires whole-leaf preparation."
+        },
+        {
+          name: "Essential Oils (Oregano/Thyme)",
+          category: "natural",
+          mechanism: "Volatile terpenes with broad-spectrum antimicrobial activity. Carvacrol and thymol disrupt bacterial membranes. Biofilm penetration demonstrated. Johns Hopkins research identified several essential oils active against Borrelia. Potential GI irritation limits internal use."
+        }
+      ],
+      mechanism: [
+        {
+          name: "Copper-Dependent Enzyme Inhibition",
+          category: "mechanism",
+          mechanism: "Borrelia possesses copper-dependent enzymes including superoxide dismutase for oxidative stress defense. Disulfiram chelates copper ions. If disulfiram's anti-Borrelia effect operates through copper sequestration, supplemental copper should rescue bacterial viability in vitro."
+        },
+        {
+          name: "Biofilm Matrix Metal Sequestration",
+          category: "mechanism",
+          mechanism: "Borrelia biofilm matrix incorporates metal ions (copper, zinc, calcium) for structural integrity. Metal chelation by disulfiram may destabilize matrix architecture. This would explain why disulfiram outperforms antibiotics against biofilm-embedded bacteria."
+        },
+        {
+          name: "Quorum Sensing Interference",
+          category: "mechanism",
+          mechanism: "Bacteria coordinate biofilm behavior through chemical signaling. Though Borrelia lacks classical quorum sensing, cell-to-cell communication exists. Disulfiram may disrupt these signals, preventing coordinated defense responses and biofilm maintenance."
+        },
+        {
+          name: "Persister Cell Metabolic Reactivation",
+          category: "mechanism",
+          mechanism: "Persister cells survive antibiotics by entering dormancy. Some compounds 'wake up' persisters making them susceptible to killing. Disulfiram may trigger metabolic reactivation while simultaneously delivering cytotoxic effects."
+        },
+        {
+          name: "Membrane Depolarization",
+          category: "mechanism",
+          mechanism: "Bacterial membrane potential is essential for ATP synthesis and survival. Disulfiram's lipophilic dithiocarbamate structure may insert into membranes and dissipate proton gradients, similar to effects on mitochondrial-like bacterial membranes."
+        },
+        {
+          name: "Intracellular Lysosomal Escape Prevention",
+          category: "mechanism",
+          mechanism: "Borrelia survives intracellularly by escaping lysosomal degradation. Disulfiram accumulates in lysosomes and may trap bacteria within, exposing them to lysosomal enzymes. This would explain efficacy against intracellular reservoirs."
+        },
+        {
+          name: "Zinc Protease Inhibition",
+          category: "mechanism",
+          mechanism: "Borrelia uses zinc-dependent proteases for tissue invasion and immune evasion. Disulfiram chelates zinc. Protease inhibition would impair spirochete motility and ability to disseminate through connective tissues."
+        },
+        {
+          name: "Aldehyde Dehydrogenase Disruption",
+          category: "mechanism",
+          mechanism: "Disulfiram's primary mechanism inhibits aldehyde dehydrogenase. Borrelia may rely on similar enzymes for metabolic detoxification. Aldehyde accumulation could be directly bactericidal. This is the 'on-label' mechanism applied to bacteria."
+        }
+      ]
+    };
+
+    // CONSTRAINT FIELDS
+    const CONSTRAINTS = {
+      treatments: document.getElementById('treatmentsConstraint').querySelector('.constraint-field').textContent,
+      experimental: document.getElementById('experimentalConstraint').querySelector('.constraint-field').textContent,
+      natural: document.getElementById('naturalConstraint').querySelector('.constraint-field').textContent,
+      mechanism: document.getElementById('mechanismConstraint').querySelector('.constraint-field').textContent
+    };
+
+    let currentQuery = 'treatments';
+
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentQuery = tab.dataset.query;
+        
+        // Show/hide constraint panels
+        document.querySelectorAll('[id$="Constraint"]').forEach(p => p.style.display = 'none');
+        document.getElementById(currentQuery + 'Constraint').style.display = 'block';
+        
+        // Render drug cards
+        renderDrugCards(currentQuery);
+        
+        // Clear results
+        document.getElementById('results').innerHTML = '';
+      });
+    });
+
+    // Render drug cards
+    function renderDrugCards(queryType) {
+      const container = document.getElementById('drugCardsContainer');
+      const drugs = TREATMENTS[queryType];
+      
+      container.innerHTML = `
+        <p style="color: var(--gray); margin-bottom: 16px; font-style: italic;">
+          ${queryType === 'mechanism' ? 'Candidate mechanisms for disulfiram\'s anti-Borrelia activity' : 'Each treatment with mechanism description for semantic coherence measurement'}
+        </p>
+        <div class="drug-grid">
+          ${drugs.map(d => `
+            <div class="drug-card">
+              <div>
+                <div class="drug-name">${d.name}<span class="category-tag ${d.category}">${d.category}</span></div>
+                <div class="drug-mechanism">${d.mechanism.substring(0, 150)}...</div>
+              </div>
+              <div class="score" id="score-${d.name.replace(/[^a-z0-9]/gi, '')}">—</div>
+              <div class="rank" id="rank-${d.name.replace(/[^a-z0-9]/gi, '')}">—</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // Run scoring
+    async function runScoring(queryType) {
+      const constraint = CONSTRAINTS[queryType];
+      const drugs = TREATMENTS[queryType];
+      const results = [];
+      
+      for (const drug of drugs) {
+        try {
+          const response = await fetch(ARBITER_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              query: constraint,
+              candidates: [drug.mechanism]
+            })
+          });
+          const data = await response.json();
+          const score = data.all?.[0]?.score || 0;
+          results.push({ ...drug, score });
+        } catch (e) {
+          console.error(`Failed for ${drug.name}:`, e);
+          results.push({ ...drug, score: 0 });
+        }
+        
+        // Small delay to avoid rate limiting
+        await new Promise(r => setTimeout(r, 200));
+      }
+      
+      // Sort by score descending
+      results.sort((a, b) => b.score - a.score);
+      results.forEach((r, i) => r.rank = i + 1);
+      
+      return results;
+    }
+
+    // Render results
+    function renderResults(title, results, insights) {
+      return `
+        <div class="panel">
+          <div class="panel-title">${title}</div>
+          <div class="drug-grid">
+            ${results.map(r => `
+              <div class="drug-card">
+                <div>
+                  <div class="drug-name">${r.name}<span class="category-tag ${r.category}">${r.category}</span></div>
+                  <div class="drug-mechanism">${r.mechanism.substring(0, 100)}...</div>
+                </div>
+                <div class="score ${r.score >= 0.5 ? 'high' : r.score >= 0.3 ? 'medium' : 'low'}">${r.score.toFixed(4)}</div>
+                <div class="rank">#${r.rank}</div>
+              </div>
+            `).join('')}
+          </div>
+          ${insights ? `
+            <div class="insight-box">
+              <div class="insight-title">Key Insight</div>
+              <div class="insight-text">${insights}</div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    // Generate insights
+    function generateInsights(queryType, results) {
+      const top = results[0];
+      const topScore = top.score.toFixed(3);
+      
+      const insights = {
+        treatments: `<strong>${top.name}</strong> shows highest coherence (${topScore}) with chronic Lyme pathology. ${
+          top.category === 'experimental' 
+            ? 'Experimental approaches are outranking standard antibiotics — the geometry suggests conventional protocols may not address key persistence mechanisms.'
+            : 'Standard treatment ranks highest, but check if experimental approaches cluster in the upper tier.'
+        }`,
+        experimental: `<strong>${top.name}</strong> ranks #1 at ${topScore}. ${
+          top.name.includes('Photodynamic') 
+            ? 'Photodynamic therapy — used in Germany for treatment-refractory patients — shows strongest geometric coherence with Borrelia elimination targets. The light-activated ROS generation directly addresses biofilm and persister challenges.'
+            : `This approach addresses the constraint field most completely.`
+        }`,
+        natural: `<strong>${top.name}</strong> scores ${topScore}. ${
+          top.name.includes("Cat's") 
+            ? 'Cat\'s claw has been used in the Lyme community for over a decade. ARBITER identified it without training on Lyme protocols — the geometry validates decades of patient experience.'
+            : 'Natural compounds with high coherence may complement antibiotic protocols.'
+        }`,
+        mechanism: `<strong>${top.name}</strong> shows highest coherence (${topScore}) with disulfiram's known properties. ${
+          top.name.includes('Copper') 
+            ? 'This suggests a testable hypothesis: if copper supplementation rescues Borrelia from disulfiram killing in vitro, the mechanism is confirmed. A 3-week experiment could validate this.'
+            : 'This mechanism warrants experimental investigation to explain disulfiram\'s anti-Borrelia activity.'
+        }`
+      };
+      
+      return insights[queryType];
+    }
+
+    // Event handlers
+    document.getElementById('runAnalysis').onclick = async () => {
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = `<div class="loading">Running ${currentQuery} analysis...</div>`;
+      
+      const results = await runScoring(currentQuery);
+      const insights = generateInsights(currentQuery, results);
+      
+      resultsDiv.innerHTML = renderResults(
+        `${currentQuery.charAt(0).toUpperCase() + currentQuery.slice(1)} Analysis Results`,
+        results,
+        insights
+      );
+    };
+
+    document.getElementById('runAll').onclick = async () => {
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '<div class="loading">Running all analyses... this may take a minute.</div>';
+      
+      const allResults = {};
+      for (const queryType of ['treatments', 'experimental', 'natural', 'mechanism']) {
+        resultsDiv.innerHTML = `<div class="loading">Running ${queryType} analysis...</div>`;
+        allResults[queryType] = await runScoring(queryType);
+      }
+      
+      resultsDiv.innerHTML = `
+        <div class="results-grid">
+          ${renderResults('Standard & Experimental Treatments', allResults.treatments, generateInsights('treatments', allResults.treatments))}
+          ${renderResults('Experimental Therapies', allResults.experimental, generateInsights('experimental', allResults.experimental))}
+        </div>
+        <div class="results-grid" style="margin-top: 24px;">
+          ${renderResults('Natural Compounds', allResults.natural, generateInsights('natural', allResults.natural))}
+          ${renderResults('Disulfiram Mechanism Discovery', allResults.mechanism, generateInsights('mechanism', allResults.mechanism))}
+        </div>
+      `;
+    };
+
+    // Initialize
+    renderDrugCards('treatments');
+  </script>
+</body>
+</html>
