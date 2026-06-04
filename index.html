@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARBITER • Lyme Disease Therapeutic Discovery</title>
+  <title>ARBITER Therapeutic Discovery | Actual General Intelligence</title>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -268,15 +268,301 @@
       .drug-card { grid-template-columns: 1fr; gap: 8px; }
       .score, .rank { text-align: left; }
     }
-  </style>
+  
+/* ===============================
+   Actual General Intelligence aesthetic pass
+   Cool white / graphite / clinical red
+   =============================== */
+:root {
+  --black: #08090b !important;
+  --white: #ffffff !important;
+  --gray: #5f6673 !important;
+  --light: #20242a !important;
+  --border: #08090b !important;
+  --surface: #ffffff !important;
+  --paper: #f6f7f8 !important;
+  --soft: #eef0f3 !important;
+  --green: #168a5b !important;
+  --red: #D71920 !important;
+  --amber: #b7791f !important;
+  --purple: #6f4db8 !important;
+  --blue: #3450b4 !important;
+}
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  background: var(--paper) !important;
+  color: var(--black) !important;
+  padding: 0 !important;
+  letter-spacing: -0.012em;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(8,9,11,.028) 1px, transparent 1px),
+    linear-gradient(rgba(8,9,11,.018) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: .44;
+  z-index: -1;
+}
+.container {
+  max-width: 1440px !important;
+  padding: 42px 34px 60px !important;
+}
+header {
+  position: relative;
+  margin-bottom: 34px !important;
+  padding: 42px 0 34px !important;
+  border-bottom: 2px solid var(--black) !important;
+  overflow: hidden;
+}
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(215,25,32,.15), transparent 26%),
+    linear-gradient(118deg, transparent 0 38%, rgba(215,25,32,.19) 38% 38.45%, transparent 38.45% 100%);
+  z-index: -1;
+}
+.label,
+.panel-title,
+.insight-title {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 10px !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase !important;
+  color: var(--red) !important;
+  font-weight: 800 !important;
+}
+h1 {
+  font-family: 'EB Garamond', Georgia, serif !important;
+  font-size: clamp(48px, 8vw, 108px) !important;
+  line-height: .86 !important;
+  letter-spacing: -.055em !important;
+  color: var(--black) !important;
+  margin: 18px 0 14px !important;
+  max-width: 9ch;
+}
+.subtitle {
+  color: var(--light) !important;
+  font-style: normal !important;
+  font-size: 18px !important;
+  max-width: 720px;
+  line-height: 1.35;
+}
+.header-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.header-actions a {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  color: #fff;
+  background: var(--red);
+  border: 2px solid var(--red);
+  padding: 12px 16px;
+  box-shadow: 5px 5px 0 var(--black);
+}
+.header-actions a:last-child {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--black);
+}
+.disclaimer-band {
+  background: #fff5f5;
+  border: 2px solid var(--black);
+  border-left: 8px solid var(--red);
+  padding: 18px 20px;
+  margin-bottom: 34px;
+  color: var(--light);
+  font-size: 14px;
+  box-shadow: 8px 8px 0 rgba(8,9,11,.10);
+}
+.disclaimer-band strong {
+  color: var(--black);
+}
+section {
+  margin-bottom: 42px !important;
+}
+h2 {
+  font-family: 'EB Garamond', Georgia, serif !important;
+  font-size: clamp(28px, 3vw, 46px) !important;
+  line-height: .95;
+  letter-spacing: -.04em;
+  color: var(--black) !important;
+  border-bottom: 2px solid var(--black) !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 20px !important;
+}
+h3 {
+  color: var(--light) !important;
+  font-weight: 700 !important;
+}
+.panel,
+.drug-card,
+.insight-box {
+  background: var(--surface) !important;
+  border: 2px solid var(--black) !important;
+  color: var(--black) !important;
+  box-shadow: 10px 10px 0 rgba(8,9,11,.10);
+}
+.panel {
+  padding: 26px !important;
+}
+.constraint-field {
+  color: var(--light) !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+}
+.tabs {
+  gap: 0 !important;
+  border: 2px solid var(--black);
+  width: fit-content;
+  background: var(--white);
+  box-shadow: 8px 8px 0 rgba(8,9,11,.10);
+}
+.tab {
+  background: var(--white) !important;
+  color: var(--black) !important;
+  border: none !important;
+  border-right: 2px solid var(--black) !important;
+  border-radius: 0 !important;
+  font-weight: 800 !important;
+}
+.tab:last-child {
+  border-right: none !important;
+}
+.tab:hover,
+.tab.active {
+  background: var(--red) !important;
+  color: #fff !important;
+}
+.drug-grid {
+  gap: 14px !important;
+}
+.drug-card {
+  background: var(--white) !important;
+  grid-template-columns: minmax(0,1fr) 90px 60px !important;
+  padding: 18px !important;
+}
+.drug-name {
+  color: var(--black) !important;
+  font-weight: 800 !important;
+}
+.drug-mechanism {
+  color: var(--gray) !important;
+  font-style: normal !important;
+  line-height: 1.45;
+}
+.category-tag {
+  border-radius: 0 !important;
+  font-weight: 800 !important;
+  border: 1px solid currentColor;
+}
+.category-tag.standard { background: rgba(52,80,180,.10) !important; color: var(--blue) !important; }
+.category-tag.experimental { background: rgba(111,77,184,.10) !important; color: var(--purple) !important; }
+.category-tag.natural { background: rgba(22,138,91,.10) !important; color: var(--green) !important; }
+.category-tag.mechanism { background: rgba(215,25,32,.10) !important; color: var(--red) !important; }
+.score {
+  color: var(--black) !important;
+  font-weight: 900 !important;
+}
+.score.high { color: var(--red) !important; }
+.score.medium { color: var(--amber) !important; }
+.score.low { color: var(--gray) !important; }
+.rank {
+  color: var(--black) !important;
+  font-weight: 900 !important;
+}
+button {
+  border-radius: 0 !important;
+  background: var(--red) !important;
+  color: #fff !important;
+  border: 2px solid var(--red) !important;
+  font-weight: 800 !important;
+  box-shadow: 5px 5px 0 var(--black);
+}
+button:hover {
+  opacity: 1 !important;
+  transform: translate(-2px,-2px);
+  box-shadow: 8px 8px 0 var(--black);
+}
+button.secondary {
+  background: var(--white) !important;
+  color: var(--black) !important;
+  border: 2px solid var(--black) !important;
+}
+.loading {
+  color: var(--gray) !important;
+  font-style: normal !important;
+  background: var(--white);
+  border: 2px solid var(--black);
+  box-shadow: 8px 8px 0 rgba(8,9,11,.10);
+}
+.insight-box {
+  background: #fff5f5 !important;
+  border-left: 8px solid var(--red) !important;
+}
+.insight-text {
+  color: var(--light) !important;
+  font-size: 15px !important;
+}
+.insight-text strong {
+  color: var(--black);
+}
+.highlight {
+  background: #fff5f5 !important;
+  border-bottom: 2px solid var(--red);
+}
+footer {
+  border-top: 2px solid var(--black) !important;
+  color: var(--gray) !important;
+  background: var(--white);
+  padding: 24px !important;
+  box-shadow: 8px 8px 0 rgba(8,9,11,.10);
+}
+footer p:first-child {
+  color: var(--black);
+  font-weight: 800;
+}
+a {
+  color: var(--red);
+}
+@media (max-width: 768px) {
+  .container { padding: 24px 20px 44px !important; }
+  .tabs { width: 100%; }
+  .tab { width: 100%; border-right: none !important; border-bottom: 2px solid var(--black) !important; }
+  .tab:last-child { border-bottom: none !important; }
+  .drug-card { grid-template-columns: 1fr !important; }
+}
+
+</style>
 </head>
 <body>
   <div class="container">
     <header>
-      <div class="label">ARBITER THERAPEUTIC DISCOVERY</div>
-      <h1>Lyme Disease Research</h1>
-      <p class="subtitle">Semantic coherence analysis for Borrelia burgdorferi treatment pathways</p>
+      <div class="label">Actual General Intelligence · ARBITER</div>
+      <h1>Therapeutic Discovery for Lyme Disease</h1>
+      <p class="subtitle">Deterministic coherence analysis for Borrelia burgdorferi treatment pathways</p>
+      <div class="header-actions">
+        <a href="mailto:joel@actualgeneralintelligence.com?subject=ARBITER%20Lyme%20Therapeutic%20Discovery%20Inquiry">Research Inquiry</a>
+        <a href="https://actualgeneralintelligence.com" target="_blank">Actual General Intelligence</a>
+      </div>
     </header>
+
+    <section class="disclaimer-band">
+      <strong>Research decision support only.</strong>
+      ARBITER ranks therapeutic hypotheses against a defined constraint field. Scores are not medical advice, diagnosis, efficacy claims, or treatment recommendations.
+    </section>
 
     <!-- QUERY SELECTION -->
     <section class="query-selector">
@@ -336,8 +622,8 @@ QUESTION: Which mechanism best explains disulfiram's activity against Borrelia b
     <section>
       <h2>Run Analysis</h2>
       <div class="button-row">
-        <button id="runAnalysis">Run Selected Analysis</button>
-        <button id="runAll" class="secondary">Run All Analyses</button>
+        <button id="runAnalysis">Run Selected Coherence Analysis</button>
+        <button id="runAll" class="secondary">Run Full Discovery Pass</button>
       </div>
       
       <div id="results"></div>
@@ -345,13 +631,13 @@ QUESTION: Which mechanism best explains disulfiram's activity against Borrelia b
     
     <!-- FOOTER -->
     <footer style="margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--gray); font-size: 14px;">
-      <p>ARBITER • TRAUT • founder@traut.ai</p>
+      <p>Actual General Intelligence • ARBITER • joel@actualgeneralintelligence.com</p>
       <p style="margin-top: 8px; font-size: 12px;">Note: If results return 0.0000, re-run — that's API rate limiting, not an actual score.</p>
     </footer>
   </div>
 
   <script>
-    const ARBITER_API = 'https://api.arbiter.traut.ai/public/compare';
+    const ARBITER_API = 'https://api.actualgeneralintelligence.com/public/compare';
 
     // TREATMENT CATEGORIES
     const TREATMENTS = {
